@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjeOdeviModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBLAPPLICATIONS">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicantID" Type="int" />
+          <Property Name="JobID" Type="int" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="Applicationstatus" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLCOMPANIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Loginname" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="Sector" Type="varchar" MaxLength="50" />
+          <Property Name="About" Type="varchar" MaxLength="200" />
+          <Property Name="Photo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLFAVORITES">
+          <Key>
+            <PropertyRef Name="FavoriteID" />
+          </Key>
+          <Property Name="FavoriteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="JobID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLJOBOPENINGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Header" Type="varchar" MaxLength="60" />
+          <Property Name="Owner" Type="int" />
+          <Property Name="About" Type="varchar" MaxLength="200" />
+          <Property Name="Photo" Type="varchar" MaxLength="50" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+          <Property Name="Sector" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLRESUMES">
+          <Key>
+            <PropertyRef Name="OzgecmisID" />
+          </Key>
+          <Property Name="OzgecmisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OzgecmicSahip" Type="varchar" MaxLength="50" />
+          <Property Name="OzgecmicDosya" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TBLUSERLOGIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLUSERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Resume" Type="varchar" MaxLength="500" />
+          <Property Name="Photo" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_TBLAPPLICATIONS_TBLCOMPANIES1">
+          <End Role="TBLCOMPANIES" Type="Self.TBLCOMPANIES" Multiplicity="0..1" />
+          <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCOMPANIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLAPPLICATIONS">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLAPPLICATIONS_TBLJOBOPENINGS1">
+          <End Role="TBLJOBOPENINGS" Type="Self.TBLJOBOPENINGS" Multiplicity="0..1" />
+          <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLJOBOPENINGS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLAPPLICATIONS">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLAPPLICATIONS_TBLUSERS1">
+          <End Role="TBLUSERS" Type="Self.TBLUSERS" Multiplicity="0..1" />
+          <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLUSERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLAPPLICATIONS">
+              <PropertyRef Name="ApplicantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLJOBOPENINGS_TBLCOMPANIES">
+          <End Role="TBLCOMPANIES" Type="Self.TBLCOMPANIES" Multiplicity="0..1" />
+          <End Role="TBLJOBOPENINGS" Type="Self.TBLJOBOPENINGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCOMPANIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLJOBOPENINGS">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjeOdeviModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLAPPLICATIONS" EntityType="Self.TBLAPPLICATIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLCOMPANIES" EntityType="Self.TBLCOMPANIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLFAVORITES" EntityType="Self.TBLFAVORITES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLJOBOPENINGS" EntityType="Self.TBLJOBOPENINGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLRESUMES" EntityType="Self.TBLRESUMES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLUSERLOGIN" EntityType="Self.TBLUSERLOGIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLUSERS" EntityType="Self.TBLUSERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLAPPLICATIONS_TBLCOMPANIES1" Association="Self.FK_TBLAPPLICATIONS_TBLCOMPANIES1">
+            <End Role="TBLCOMPANIES" EntitySet="TBLCOMPANIES" />
+            <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLAPPLICATIONS_TBLJOBOPENINGS1" Association="Self.FK_TBLAPPLICATIONS_TBLJOBOPENINGS1">
+            <End Role="TBLJOBOPENINGS" EntitySet="TBLJOBOPENINGS" />
+            <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLAPPLICATIONS_TBLUSERS1" Association="Self.FK_TBLAPPLICATIONS_TBLUSERS1">
+            <End Role="TBLUSERS" EntitySet="TBLUSERS" />
+            <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLJOBOPENINGS_TBLCOMPANIES" Association="Self.FK_TBLJOBOPENINGS_TBLCOMPANIES">
+            <End Role="TBLCOMPANIES" EntitySet="TBLCOMPANIES" />
+            <End Role="TBLJOBOPENINGS" EntitySet="TBLJOBOPENINGS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjeOdeviModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBLAPPLICATIONS">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicantID" Type="Int32" />
+          <Property Name="JobID" Type="Int32" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="Applicationstatus" Type="Int32" />
+          <NavigationProperty Name="TBLCOMPANIES" Relationship="Self.FK_TBLAPPLICATIONS_TBLCOMPANIES1" FromRole="TBLAPPLICATIONS" ToRole="TBLCOMPANIES" />
+          <NavigationProperty Name="TBLJOBOPENINGS" Relationship="Self.FK_TBLAPPLICATIONS_TBLJOBOPENINGS1" FromRole="TBLAPPLICATIONS" ToRole="TBLJOBOPENINGS" />
+          <NavigationProperty Name="TBLUSERS" Relationship="Self.FK_TBLAPPLICATIONS_TBLUSERS1" FromRole="TBLAPPLICATIONS" ToRole="TBLUSERS" />
+        </EntityType>
+        <EntityType Name="TBLCOMPANIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Loginname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="About" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLAPPLICATIONS" Relationship="Self.FK_TBLAPPLICATIONS_TBLCOMPANIES1" FromRole="TBLCOMPANIES" ToRole="TBLAPPLICATIONS" />
+          <NavigationProperty Name="TBLJOBOPENINGS" Relationship="Self.FK_TBLJOBOPENINGS_TBLCOMPANIES" FromRole="TBLCOMPANIES" ToRole="TBLJOBOPENINGS" />
+        </EntityType>
+        <EntityType Name="TBLFAVORITES">
+          <Key>
+            <PropertyRef Name="FavoriteID" />
+          </Key>
+          <Property Name="FavoriteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="JobID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TBLJOBOPENINGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Header" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Owner" Type="Int32" />
+          <Property Name="About" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLAPPLICATIONS" Relationship="Self.FK_TBLAPPLICATIONS_TBLJOBOPENINGS1" FromRole="TBLJOBOPENINGS" ToRole="TBLAPPLICATIONS" />
+          <NavigationProperty Name="TBLCOMPANIES" Relationship="Self.FK_TBLJOBOPENINGS_TBLCOMPANIES" FromRole="TBLJOBOPENINGS" ToRole="TBLCOMPANIES" />
+        </EntityType>
+        <EntityType Name="TBLUSERLOGIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBLUSERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Resume" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLAPPLICATIONS" Relationship="Self.FK_TBLAPPLICATIONS_TBLUSERS1" FromRole="TBLUSERS" ToRole="TBLAPPLICATIONS" />
+        </EntityType>
+        <Association Name="FK_TBLAPPLICATIONS_TBLCOMPANIES1">
+          <End Role="TBLCOMPANIES" Type="Self.TBLCOMPANIES" Multiplicity="0..1" />
+          <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCOMPANIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLAPPLICATIONS">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLAPPLICATIONS_TBLJOBOPENINGS1">
+          <End Role="TBLJOBOPENINGS" Type="Self.TBLJOBOPENINGS" Multiplicity="0..1" />
+          <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLJOBOPENINGS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLAPPLICATIONS">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLAPPLICATIONS_TBLUSERS1">
+          <End Role="TBLUSERS" Type="Self.TBLUSERS" Multiplicity="0..1" />
+          <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLUSERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLAPPLICATIONS">
+              <PropertyRef Name="ApplicantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLJOBOPENINGS_TBLCOMPANIES">
+          <End Role="TBLCOMPANIES" Type="Self.TBLCOMPANIES" Multiplicity="0..1" />
+          <End Role="TBLJOBOPENINGS" Type="Self.TBLJOBOPENINGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCOMPANIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLJOBOPENINGS">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjeOdeviEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TBLAPPLICATIONS" EntityType="Self.TBLAPPLICATIONS" />
+          <EntitySet Name="TBLCOMPANIES" EntityType="Self.TBLCOMPANIES" />
+          <EntitySet Name="TBLFAVORITES" EntityType="Self.TBLFAVORITES" />
+          <EntitySet Name="TBLJOBOPENINGS" EntityType="Self.TBLJOBOPENINGS" />
+          <EntitySet Name="TBLUSERLOGIN" EntityType="Self.TBLUSERLOGIN" />
+          <EntitySet Name="TBLUSERS" EntityType="Self.TBLUSERS" />
+          <AssociationSet Name="FK_TBLAPPLICATIONS_TBLCOMPANIES1" Association="Self.FK_TBLAPPLICATIONS_TBLCOMPANIES1">
+            <End Role="TBLCOMPANIES" EntitySet="TBLCOMPANIES" />
+            <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLAPPLICATIONS_TBLJOBOPENINGS1" Association="Self.FK_TBLAPPLICATIONS_TBLJOBOPENINGS1">
+            <End Role="TBLJOBOPENINGS" EntitySet="TBLJOBOPENINGS" />
+            <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLAPPLICATIONS_TBLUSERS1" Association="Self.FK_TBLAPPLICATIONS_TBLUSERS1">
+            <End Role="TBLUSERS" EntitySet="TBLUSERS" />
+            <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLJOBOPENINGS_TBLCOMPANIES" Association="Self.FK_TBLJOBOPENINGS_TBLCOMPANIES">
+            <End Role="TBLCOMPANIES" EntitySet="TBLCOMPANIES" />
+            <End Role="TBLJOBOPENINGS" EntitySet="TBLJOBOPENINGS" />
+          </AssociationSet>
+          <EntitySet Name="TBLRESUMES" EntityType="ProjeOdeviModel.TBLRESUMES" />
+        </EntityContainer>
+        <EntityType Name="TBLRESUMES">
+          <Key>
+            <PropertyRef Name="OzgecmisID" />
+          </Key>
+          <Property Name="OzgecmisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OzgecmicSahip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OzgecmicDosya" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjeOdeviModelStoreContainer" CdmEntityContainer="ProjeOdeviEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProjeOdeviModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLAPPLICATIONS">
+            <EntityTypeMapping TypeName="ProjeOdeviModel.TBLAPPLICATIONS">
+              <MappingFragment StoreEntitySet="TBLAPPLICATIONS">
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Applicationstatus" ColumnName="Applicationstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLCOMPANIES">
+            <EntityTypeMapping TypeName="ProjeOdeviModel.TBLCOMPANIES">
+              <MappingFragment StoreEntitySet="TBLCOMPANIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Loginname" ColumnName="Loginname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLFAVORITES">
+            <EntityTypeMapping TypeName="ProjeOdeviModel.TBLFAVORITES">
+              <MappingFragment StoreEntitySet="TBLFAVORITES">
+                <ScalarProperty Name="FavoriteID" ColumnName="FavoriteID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLJOBOPENINGS">
+            <EntityTypeMapping TypeName="ProjeOdeviModel.TBLJOBOPENINGS">
+              <MappingFragment StoreEntitySet="TBLJOBOPENINGS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLUSERLOGIN">
+            <EntityTypeMapping TypeName="ProjeOdeviModel.TBLUSERLOGIN">
+              <MappingFragment StoreEntitySet="TBLUSERLOGIN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLUSERS">
+            <EntityTypeMapping TypeName="ProjeOdeviModel.TBLUSERS">
+              <MappingFragment StoreEntitySet="TBLUSERS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLRESUMES">
+            <EntityTypeMapping TypeName="ProjeOdeviModel.TBLRESUMES">
+              <MappingFragment StoreEntitySet="TBLRESUMES">
+                <ScalarProperty Name="OzgecmicDosya" ColumnName="OzgecmicDosya" />
+                <ScalarProperty Name="OzgecmicSahip" ColumnName="OzgecmicSahip" />
+                <ScalarProperty Name="OzgecmisID" ColumnName="OzgecmisID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

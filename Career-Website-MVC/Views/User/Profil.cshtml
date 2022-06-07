@@ -1,0 +1,164 @@
+﻿@using IntProgFinalProject.Models.Entity
+@model List<TBLUSERS>
+
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<br />
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<h2 style="text-align:center;"> Kullanıcı Profil Sayfası</h2>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+            button:hover, a:hover {
+                opacity: 0.7;
+            }
+    </style>
+   
+</head>
+<body>
+
+    <div class="card">
+        <img src="~/Image/@ViewBag.imagepath" style="width:100%">
+        <h3>@ViewBag.kisiselkullaniciadi @ViewBag.kisiselkullanicisoyadi</h3>
+        <p class="title">Merhaba,Profilime Hoşgeldiniz.</p>
+        <p>@ViewBag.kisiselkullaniciemail</p>
+
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        
+        <p><button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal2">Profil Resmi Ekle</button></p>
+        
+        <p><button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal1">Özgeçmiş Ekle</button></p>
+        <table id="tblnodes" class="table table-bordered">
+            <tr>
+
+                <th>Özgeçmişim</th>
+                <th>Link</th>
+
+
+            </tr>
+            <tr id="tablo">
+                <td id="ozgecmisad">@ViewBag.filename</td>
+                <td id="ozgecmislink">@Html.ActionLink("indir", "Download", new { filename = @ViewBag.filename }) </td>
+            </tr>
+        </table>
+    </div>
+    @*@using (Html.BeginForm("OzgecmisEkle", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+
+                <input style="display:inline-block;" type="file" name="file" />
+                <br />
+                <input style="display:inline-block;"type="submit" value="Özgeçmiş Ekle" />
+
+
+            }
+        </div>*@
+
+
+
+    <div class="modal" id="Modal1">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Özgeçmiş Ekle</h2>
+                    @using (Html.BeginForm("FileUpload", "User", FormMethod.Post, new { enctype = "multipart/form-data"}))
+                    {
+                        <div class="modal-body">
+
+
+                            <input style="display: inline-block;" type="file" size="10" id="file" name="file">
+                            <input style="display: inline-block;" class="btn btn-primary" type="submit" value="Ekle">
+
+                            @*<input style="display: inline-block;" type="file" size="10" id="myFile" name="file">
+                                <input style="display: inline-block;" class="btn btn-primary" type="submit" value="Ekle">*@
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="Modal2">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Özgeçmiş Ekle</h2>
+                    @using (Html.BeginForm("ImageUpload", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="modal-body">
+
+
+                            <input style="display: inline-block;" type="file" size="10" id="file" name="file">
+                            <input style="display: inline-block;" class="btn btn-primary" type="submit" value="Ekle">
+
+
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+
+
+
+</body>
+
+</html>
+
+
+
+@*<form> Dosya ekleme
+    <h1>Özgeçmiş ekle</h1>
+    <input type="file" id="myFile" name="filename">
+    <input type="submit">
+</form>*@

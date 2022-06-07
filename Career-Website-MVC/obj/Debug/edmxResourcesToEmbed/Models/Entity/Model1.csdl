@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjeOdeviModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TBLAPPLICATIONS">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicantID" Type="Int32" />
+    <Property Name="JobID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="Applicationstatus" Type="Int32" />
+    <NavigationProperty Name="TBLCOMPANIES" Relationship="Self.FK_TBLAPPLICATIONS_TBLCOMPANIES1" FromRole="TBLAPPLICATIONS" ToRole="TBLCOMPANIES" />
+    <NavigationProperty Name="TBLJOBOPENINGS" Relationship="Self.FK_TBLAPPLICATIONS_TBLJOBOPENINGS1" FromRole="TBLAPPLICATIONS" ToRole="TBLJOBOPENINGS" />
+    <NavigationProperty Name="TBLUSERS" Relationship="Self.FK_TBLAPPLICATIONS_TBLUSERS1" FromRole="TBLAPPLICATIONS" ToRole="TBLUSERS" />
+  </EntityType>
+  <EntityType Name="TBLCOMPANIES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Loginname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="About" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLAPPLICATIONS" Relationship="Self.FK_TBLAPPLICATIONS_TBLCOMPANIES1" FromRole="TBLCOMPANIES" ToRole="TBLAPPLICATIONS" />
+    <NavigationProperty Name="TBLJOBOPENINGS" Relationship="Self.FK_TBLJOBOPENINGS_TBLCOMPANIES" FromRole="TBLCOMPANIES" ToRole="TBLJOBOPENINGS" />
+  </EntityType>
+  <EntityType Name="TBLFAVORITES">
+    <Key>
+      <PropertyRef Name="FavoriteID" />
+    </Key>
+    <Property Name="FavoriteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="JobID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TBLJOBOPENINGS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Header" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Owner" Type="Int32" />
+    <Property Name="About" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLAPPLICATIONS" Relationship="Self.FK_TBLAPPLICATIONS_TBLJOBOPENINGS1" FromRole="TBLJOBOPENINGS" ToRole="TBLAPPLICATIONS" />
+    <NavigationProperty Name="TBLCOMPANIES" Relationship="Self.FK_TBLJOBOPENINGS_TBLCOMPANIES" FromRole="TBLJOBOPENINGS" ToRole="TBLCOMPANIES" />
+  </EntityType>
+  <EntityType Name="TBLUSERLOGIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBLUSERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Resume" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLAPPLICATIONS" Relationship="Self.FK_TBLAPPLICATIONS_TBLUSERS1" FromRole="TBLUSERS" ToRole="TBLAPPLICATIONS" />
+  </EntityType>
+  <Association Name="FK_TBLAPPLICATIONS_TBLCOMPANIES1">
+    <End Role="TBLCOMPANIES" Type="Self.TBLCOMPANIES" Multiplicity="0..1" />
+    <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLCOMPANIES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLAPPLICATIONS">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLAPPLICATIONS_TBLJOBOPENINGS1">
+    <End Role="TBLJOBOPENINGS" Type="Self.TBLJOBOPENINGS" Multiplicity="0..1" />
+    <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLJOBOPENINGS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLAPPLICATIONS">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLAPPLICATIONS_TBLUSERS1">
+    <End Role="TBLUSERS" Type="Self.TBLUSERS" Multiplicity="0..1" />
+    <End Role="TBLAPPLICATIONS" Type="Self.TBLAPPLICATIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLUSERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLAPPLICATIONS">
+        <PropertyRef Name="ApplicantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLJOBOPENINGS_TBLCOMPANIES">
+    <End Role="TBLCOMPANIES" Type="Self.TBLCOMPANIES" Multiplicity="0..1" />
+    <End Role="TBLJOBOPENINGS" Type="Self.TBLJOBOPENINGS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLCOMPANIES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLJOBOPENINGS">
+        <PropertyRef Name="Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjeOdeviEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TBLAPPLICATIONS" EntityType="Self.TBLAPPLICATIONS" />
+    <EntitySet Name="TBLCOMPANIES" EntityType="Self.TBLCOMPANIES" />
+    <EntitySet Name="TBLFAVORITES" EntityType="Self.TBLFAVORITES" />
+    <EntitySet Name="TBLJOBOPENINGS" EntityType="Self.TBLJOBOPENINGS" />
+    <EntitySet Name="TBLUSERLOGIN" EntityType="Self.TBLUSERLOGIN" />
+    <EntitySet Name="TBLUSERS" EntityType="Self.TBLUSERS" />
+    <AssociationSet Name="FK_TBLAPPLICATIONS_TBLCOMPANIES1" Association="Self.FK_TBLAPPLICATIONS_TBLCOMPANIES1">
+      <End Role="TBLCOMPANIES" EntitySet="TBLCOMPANIES" />
+      <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLAPPLICATIONS_TBLJOBOPENINGS1" Association="Self.FK_TBLAPPLICATIONS_TBLJOBOPENINGS1">
+      <End Role="TBLJOBOPENINGS" EntitySet="TBLJOBOPENINGS" />
+      <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLAPPLICATIONS_TBLUSERS1" Association="Self.FK_TBLAPPLICATIONS_TBLUSERS1">
+      <End Role="TBLUSERS" EntitySet="TBLUSERS" />
+      <End Role="TBLAPPLICATIONS" EntitySet="TBLAPPLICATIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLJOBOPENINGS_TBLCOMPANIES" Association="Self.FK_TBLJOBOPENINGS_TBLCOMPANIES">
+      <End Role="TBLCOMPANIES" EntitySet="TBLCOMPANIES" />
+      <End Role="TBLJOBOPENINGS" EntitySet="TBLJOBOPENINGS" />
+    </AssociationSet>
+    <EntitySet Name="TBLRESUMES" EntityType="ProjeOdeviModel.TBLRESUMES" />
+  </EntityContainer>
+  <EntityType Name="TBLRESUMES">
+    <Key>
+      <PropertyRef Name="OzgecmisID" />
+    </Key>
+    <Property Name="OzgecmisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OzgecmicSahip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OzgecmicDosya" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

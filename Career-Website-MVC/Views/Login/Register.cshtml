@@ -1,0 +1,78 @@
+﻿@using IntProgFinalProject.Models.Entity
+@model List<TBLUSERLOGIN>
+@{
+    Layout = null;
+}
+
+
+<style>
+
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>
+
+@using (Html.BeginForm("Register", "Login", FormMethod.Post))
+{
+    <div>
+        <label>
+            Email Adresiniz:
+        </label>
+        <input required type="text" class="form-control" name="Email" />
+        <br />
+        <br />
+        <label>
+            Şifreniz:
+        </label>
+        <input required type="password" class="form-control" name="Password" />
+        <br />
+        <label>
+            Adınız:
+        </label>
+        <input required type="text" class="form-control" name="Name" />
+        <br />
+        <label>
+            Soyadınız:
+        </label>
+        <input required type="text" class="form-control" name="Surname" />
+        <br />
+        <br />
+        <input type="radio" class="form-control" id="Company" value="Company" name="Role" />
+        <label for="Company">Kurumsal Kullanıcı</label>
+        <input type="radio" class="form-control" id="User" value="User" name="Role" />
+        <label for="User">Bireysel Kullanıcı</label>
+    </div>
+    <div>
+
+        <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+    </div>
+
+
+}

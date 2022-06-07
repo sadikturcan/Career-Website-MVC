@@ -1,0 +1,55 @@
+﻿@using IntProgFinalProject.Models.Entity
+
+@model List<TBLJOBOPENINGS>
+
+
+
+@{
+    ViewBag.Title = "Ilanguncellegetir";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+<style>
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+@using (Html.BeginForm("Ilanduzenle", "Company", FormMethod.Post, new { @class = "login-form" }))
+{
+    <div class="form-control">
+
+
+        <label>İlan Başlığı</label>
+        @Html.TextBoxFor(m => m[0].Header, new { @class = "form-control" })
+        <br />
+        <label>İlan Hakkında</label>
+        @Html.TextBoxFor(m => m[0].About, new { @class = "form-control" })
+        <br />
+        <label>İlan Kategorisi</label>
+
+        @Html.TextBoxFor(m => m[0].Category, new { @class = "form-control" })
+
+
+        <button type="submit" class="btn-success">Kaydet</button>
+    </div>
+    @Html.HiddenFor(m => m[0].ID)
+}

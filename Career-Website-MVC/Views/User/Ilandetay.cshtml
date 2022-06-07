@@ -1,0 +1,120 @@
+﻿@using IntProgFinalProject.Models.Entity
+
+
+@model List<TBLJOBOPENINGS>
+@{
+    ViewBag.Title = "Ilandetay";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<br />
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+@*@foreach (var dty in Model)
+    {
+        <form method="get" class="form-group-lg">
+            <label>Başlık</label><br>
+            <input style="text-align:center;" type="text" value=@dty.Header readonly><br>
+            <label>İlan Sahibi</label><br>
+            <input type="text" value=@dty.TBLCOMPANIES.Name readonly><br><br>
+            <label>Hakkında</label><br>
+            <input style="height:100px; width:200px;" type="text" value=@dty.About readonly><br>
+            <label>Fotografı</label><br>
+            <input type="text" value=@dty.Photo readonly><br><br>
+            <label>Kategorisi</label><br>
+            <input type="text" value=@dty.Category readonly><br>
+            <label>Sektör Bilgisi</label><br>
+            <input type="text" value=@dty.Sector readonly><br><br>
+
+        </form>
+    }*@
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>İlan Başlığı</th>
+        <th>İlan Sahibi</th>
+        <th>İlan Hakkında</th>
+        <th>İlan Fotograf</th>
+        <th>İlan Kategori</th>
+        <th>İlan Sektör</th>
+
+
+    </tr>
+    <tbody>
+
+        @foreach (var dty in Model)
+        {
+            <tr>
+                <td>@dty.Header</td>
+                <td>@dty.TBLCOMPANIES.Name</td>
+                <td>@dty.About</td>
+
+                <td>@dty.Category</td>
+                <td>@dty.Sector</td>
+                <td>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal1">
+                        Başvur
+                    </button>
+                </td>
+
+
+
+            </tr>
+            <div class="modal" id="Modal1">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                            <h2 class="modal-title">Başvurunu Onaylıyor Musun?</h2>
+                        </div>
+                        <form method="post" action="/User/IlanBasvur">
+
+                            <div style="display:none;" class="modal-body">
+                                <label>
+                                    ApplicantID
+                                </label>
+                                <input type="text" name="ApplicantID" class="form-control" value="@ViewBag.userid" />
+
+                                <label>
+                                    JobID
+                                </label>
+                                <input type="text" name="JobID" class="form-control" value="@dty.ID" />
+                                <label>
+                                    CompanyID
+                                </label>
+                                <input type="text" name="CompanyID" class="form-control" value="@dty.TBLCOMPANIES.ID" />
+                                <label>
+                                    Applicationstatus
+                                </label>
+                                <input type="text" name="Applicationstatus" class="form-control" value="0" />
+                            </div>
+                            <button id="basvur" style="place-content:center;" class="btn btn-primary">Başvuruyu Onayla</button>
+                            <button id="vazgec" style="place-content:center;" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+
+                            <script>
+
+                                $('#basvur').click(function () {
+                                    swal("", "İlana Başarıyla Başvuruldu.", "success");
+
+                                });
+
+                            </script>
+                        </form>
+
+                    </div>
+                    <div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        }
+    </tbody>
+</table>

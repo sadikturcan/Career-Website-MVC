@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @*<link rel="stylesheet" href="/styles.css">*@
+    @*<script src="app.js"></script>*@
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+
+  margin: 0;
+  padding:0 ;
+}
+h1{
+
+  background-color:#336ea2;
+  border-bottom: 5px solid gray;
+  padding: 20px;
+  color:white;
+  text-align: center;
+}
+
+.s{
+border-left:5px solid #336ea2;
+height: 100%;
+position: absolute;
+left: 50%;
+margin-left: 3px;
+top: 120px;
+}
+
+
+.split {
+  height: 700px;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 120px;
+  margin-top: 120px;
+}
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #3E606F;
+
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color:white ;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.centered img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+
+}
+
+.split:hover{
+
+  box-shadow: 5px 10px;
+  opacity: 0.5;
+}
+#header{
+  background-color: red;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <h1><div id="header"></div>Kariyer Sitesi<br>Giriş Sayfasına Hoşgeldiniz</div></h1>
+    <div class="s"></div>
+    <div class="split left">
+        <div class="centered">
+            <img src="~/img/fotograf.jpg" alt="Company">
+            <h2>İşveren/Şirket Girişi</h2>
+
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="centered">
+            <img src="~/img/fotograf.jpg" alt="FindJob">
+            <h2>İş Arayan Girişi</h2>
+
+        </div>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,78 @@
+﻿@using IntProgFinalProject.Models.Entity
+@model List<TBLAPPLICATIONS>
+
+
+@{
+    ViewBag.Title = "BasvuruDurum";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+
+<style>
+    input[type="radio"] {
+        background-color: #fff;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.15em;
+        height: 1.15em;
+        border: 0.15em solid currentColor;
+        border-radius: 50%;
+    }
+
+    button[type=submit] {
+        width: 20%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 50px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+@using (Html.BeginForm("BasvuruDurumKaydet", "Company", FormMethod.Post))
+{
+    <div class="form-control">
+
+        @*@Html.LabelFor(m => m[0].Applicationstatus)
+            @Html.TextBoxFor(m => m[0].Applicationstatus, new { @class = "form-control" })*@
+        <p>@Html.RadioButtonFor(m => m[0].Applicationstatus, "1")Başvuruyu Onayla</p>
+        <p>@Html.RadioButtonFor(m => m[0].Applicationstatus, "-1")Başvuruyu Reddet</p>
+
+
+
+
+        @*@foreach (var mdl in Model)
+                {
+            <label style="display:none;">ApplicantID</label>
+                <input type="text" value="@mdl.ApplicantID" />
+
+                <label style="display:none;">JobID</label>
+                <input type="text" value="@mdl.JobID" />
+
+
+                <label style="display:none;">CompanyID</label>
+                <input type="text" value="@mdl.CompanyID" />
+
+            <input type="radio" class="form-control" id="Company" value="1" name="@mdl.Applicationstatus" />
+                <label for="Company">Başvuruyu Onayla</label>
+                <input type="radio" class="form-control" id="User" value="-1" name="@mdl.Applicationstatus" />
+                <label for="User">Başvuruyu Reddet</label>
+
+
+
+
+            }*@
+
+
+
+
+    </div>
+    @Html.HiddenFor(m => m[0].ApplicationID)
+    <div>
+        <button type="submit" class="btn-success">Kaydet</button>
+    </div>
+}

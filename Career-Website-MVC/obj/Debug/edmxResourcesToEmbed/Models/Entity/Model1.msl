@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjeOdeviModelStoreContainer" CdmEntityContainer="ProjeOdeviEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ProjeOdeviModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLAPPLICATIONS">
+      <EntityTypeMapping TypeName="ProjeOdeviModel.TBLAPPLICATIONS">
+        <MappingFragment StoreEntitySet="TBLAPPLICATIONS">
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Applicationstatus" ColumnName="Applicationstatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLCOMPANIES">
+      <EntityTypeMapping TypeName="ProjeOdeviModel.TBLCOMPANIES">
+        <MappingFragment StoreEntitySet="TBLCOMPANIES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Loginname" ColumnName="Loginname" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+          <ScalarProperty Name="About" ColumnName="About" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLFAVORITES">
+      <EntityTypeMapping TypeName="ProjeOdeviModel.TBLFAVORITES">
+        <MappingFragment StoreEntitySet="TBLFAVORITES">
+          <ScalarProperty Name="FavoriteID" ColumnName="FavoriteID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLJOBOPENINGS">
+      <EntityTypeMapping TypeName="ProjeOdeviModel.TBLJOBOPENINGS">
+        <MappingFragment StoreEntitySet="TBLJOBOPENINGS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Header" ColumnName="Header" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="About" ColumnName="About" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Sector" ColumnName="Sector" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLUSERLOGIN">
+      <EntityTypeMapping TypeName="ProjeOdeviModel.TBLUSERLOGIN">
+        <MappingFragment StoreEntitySet="TBLUSERLOGIN">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLUSERS">
+      <EntityTypeMapping TypeName="ProjeOdeviModel.TBLUSERS">
+        <MappingFragment StoreEntitySet="TBLUSERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Resume" ColumnName="Resume" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLRESUMES">
+      <EntityTypeMapping TypeName="ProjeOdeviModel.TBLRESUMES">
+        <MappingFragment StoreEntitySet="TBLRESUMES">
+          <ScalarProperty Name="OzgecmicDosya" ColumnName="OzgecmicDosya" />
+          <ScalarProperty Name="OzgecmicSahip" ColumnName="OzgecmicSahip" />
+          <ScalarProperty Name="OzgecmisID" ColumnName="OzgecmisID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

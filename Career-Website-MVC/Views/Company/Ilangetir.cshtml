@@ -1,0 +1,136 @@
+﻿
+@using IntProgFinalProject.Models.Entity
+
+
+@model List<TBLJOBOPENINGS>
+
+@{
+    ViewBag.Title = "Ilangetir";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+<table class="table table-bordered">
+    <tr>
+        <th>İlanı Güncelle</th>
+        <th>İlan Başlığı</th>
+        <th>İlan Tipi</th>
+
+        <th>İlan Hakkında</th>
+        <th>Başvuranlar</th>
+        
+
+
+    </tr>
+    <tbody>
+
+        @foreach (var ilan in Model)
+        {
+
+
+            <tr>
+                <td><a href="/Company/Ilanguncellegetir/@ilan.ID" class="btn btn-warning">İlanı Güncelle</td>
+                <td>@ilan.Header</td>
+                <td>@ilan.Category</td>
+
+                <td>@ilan.About</td>
+                <td>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal4">
+                        Başvuranları Görüntüle
+                    </button>
+                </td>
+                
+
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div class="modal" id="Modal4">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Başvuran Kişi Listesi</h2>
+
+                <div class="modal-body">
+
+                    <table id="tblnodes2">
+                        <tr>
+                            <th>Başvuran Kişi Adı</th>
+                            <th>Başvuran Kişi Soyadı</th>
+                            <th>Başvuran Kişi Email Adresi</th>
+                            <th>Başvuran Kişi Özgeçmişi</th>
+                            <th>Başvuru Sonuç Belirle</th>
+
+                            <hr />
+                        </tr>
+
+                        <tbody>
+
+
+                            @foreach (var kisi in ViewBag.kisiler)
+                            {
+                                <tr>
+
+                                    <td>@kisi.TBLUSERS.Name</td>
+                                    <td>@kisi.TBLUSERS.Surname</td>
+                                    <td>@kisi.TBLUSERS.Email</td>
+
+
+
+
+
+                               
+
+                                
+                                    <td>
+
+                                        @*@foreach (var cv in ViewBag.basvurucvler)
+        {
+
+            @Html.ActionLink("Ozgecmiş İndir", "Indır", new { filename = cv })
+
+        }*@                             @{
+                                        foreach (var cv in ViewBag.basvurucvler)
+                                        {
+                                        if (cv.Contains(kisi.TBLUSERS.Name.ToString()))
+                                        {
+                                        @Html.ActionLink("Ozgecmiş İndir", "Indır", new { filename = cv })
+
+                                        }
+                                        }
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="/Company/BasvuruDurum/@kisi.ApplicantID" class="btn btn-info">Başvuru Durumu</a>
+                                        </td>
+
+                                       
+</tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+
+
+                </div>
+                <script>
+
+                    $('#tblnodes2 > tbody  > tr').has('td:empty').hide()
+
+                </script>
+                <form class="modal-body">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

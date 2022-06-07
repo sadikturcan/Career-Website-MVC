@@ -1,0 +1,170 @@
+﻿@model IntProgFinalProject.Models.Entity.TBLUSERLOGIN
+
+@{
+    Layout = null;
+}
+
+
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>GirisYap</title>
+
+    </head>
+    <body>
+        <div style="text-align:center;">
+            @using (Html.BeginForm("GirisYap", "Login", FormMethod.Post)) {
+            <label for="Email">Mail Adresiniz:</label>
+            <input type="text" name="Email" required="required" /> <br /><br />
+            <label for="Password">Şifreniz:</label>
+            <input type="password" name="Password" required="required" /><br />
+            <input type="submit" value="Giriş Yap" />
+
+
+            }
+        </div>
+    </body>
+    </html>*@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GirisYap</title>
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: white;
+            background-image:url("/img/ofis.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment:fixed;
+            background-size:cover;
+
+        }
+
+        .box {
+            width: 320px;
+            padding: 40px;
+            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: #062e51;
+            text-align: center;
+            margin: 0 auto;
+           
+            border-radius: 24px;
+            border: 2px solid gray;
+        }
+
+            .box h4 {
+                color: white;
+                text-transform: uppercase;
+                font-weight: 500;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+
+            .box input[type="text"], .box input[type="password"] {
+                border: 0;
+                background: none;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                border: 2px solid #3498db;
+                padding: 14px 10px;
+                width: 200px;
+                outline: none;
+                color: white;
+                border-radius: 24px;
+                transition: 0.25s;
+            }
+
+                .box input[type="text"]:focus, .box input[type="password"]:focus {
+                    width: 280px;
+                    border-color: white;
+                }
+
+            .box input[type="submit"] {
+                border: 0;
+                background: none;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                border: 2px solid wheat;
+                padding: 14px 40px;
+                width: 150px;
+                outline: none;
+                color: white;
+                border-radius: 24px;
+                transition: 0.25s;
+                cursor: pointer;
+            }
+
+                .box input[type="submit"]:hover {
+                    background: #3498db;
+                }
+
+        #kayit {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid wheat;
+            padding: 8px 20px;
+            width: 150px;
+            
+        
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+            #kayit:hover {
+                background: #3498db;
+            }
+                
+
+    </style>
+
+</head>
+<body>
+
+
+
+    @using (Html.BeginForm("GirisYap", "Login", FormMethod.Post, new { @class = "box" }))
+    {
+
+        <h4>Kariyer Sitesi'ne Hoşgeldiniz <br /><br /> Giriş Sayfası</h4>
+        <input type="text" name="Email" placeholder="Email Adresiniz" />
+        <input type="password" name="Password" placeholder="Şifreniz" />
+        <input type="submit" name="" value="Giriş Yap" />
+
+    }
+   
+    <a href="/Login/Register" style="margin-top:170px; text-decoration:none;" class="box" type="submit" id="kayit">Kayıt Ol</a>
+
+
+
+    
+
+</body>
+
+
+
+
+
+
+</html>
+
